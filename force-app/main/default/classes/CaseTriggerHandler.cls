@@ -7,21 +7,25 @@
 **/
 public with sharing class CaseTriggerHandler {
 
-  public CaseTriggerHandler() {}
+  private List<Case> cases;
 
-  public void onAfterInsert(List<Case> cases) {
-    new RollupCaseService(cases).runRollups();
+  public CaseTriggerHandler(List<Case> cases) {
+    this.cases = cases;
   }
 
-  public void onAfterUpdate(List<Case> cases) {
-    new RollupCaseService(cases).runRollups();
+  public void onAfterInsert() {
+    new RollupCaseService(this.cases).runRollups();
   }
 
-  public void onAfterDelete(List<Case> cases) {
-    new RollupCaseService(cases).runRollups();
+  public void onAfterUpdate() {
+    new RollupCaseService(this.cases).runRollups();
   }
 
-  public void onAfterUndelete(List<Case> cases) {
-    new RollupCaseService(cases).runRollups();
+  public void onAfterDelete() {
+    new RollupCaseService(this.cases).runRollups();
+  }
+
+  public void onAfterUndelete() {
+    new RollupCaseService(this.cases).runRollups();
   }
 }

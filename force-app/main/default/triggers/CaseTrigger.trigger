@@ -8,18 +8,18 @@
 trigger CaseTrigger on Case (after insert, after update, after delete, after undelete) {
 
   if (Trigger.isInsert) {
-    new CaseTriggerHandler().onAfterInsert(Trigger.new);
+    new CaseTriggerHandler(Trigger.new).onAfterInsert();
   }
 
   if (Trigger.isUpdate) {
-    new CaseTriggerHandler().onAfterUpdate(Trigger.new);
+    new CaseTriggerHandler(Trigger.new).onAfterUpdate();
   }
 
   if (Trigger.isDelete) {
-    new CaseTriggerHandler().onAfterDelete(Trigger.old);
+    new CaseTriggerHandler(Trigger.new).onAfterDelete();
   }
 
   if (Trigger.isUndelete) {
-    new CaseTriggerHandler().onAfterUndelete(Trigger.new);
+    new CaseTriggerHandler(Trigger.new).onAfterUndelete();
   }
 }
