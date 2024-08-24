@@ -16,7 +16,7 @@ trigger CaseTrigger on Case (after insert, after update, after delete, after und
   }
 
   if (Trigger.isDelete) {
-    new CaseTriggerHandler(Trigger.new).onAfterDelete();
+    new CaseTriggerHandler(Trigger.old).onAfterDelete();
   }
 
   if (Trigger.isUndelete) {
